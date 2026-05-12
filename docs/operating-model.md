@@ -1,5 +1,70 @@
 # Operating Model — Urutan Kerja Agent
 
+## Diagram Cara Kerja Sama
+
+```
+┌─────────────────────────────────────────────────────────┐
+│                   CHIEF ORCHESTRATOR                      │
+│         (memimpin, memutuskan, menyintesis)              │
+└────────────┬──────────┬──────────┬──────────┬───────────┘
+             │          │          │          │
+     ┌───────▼──┐ ┌─────▼────┐ ┌──▼─────┐ ┌──▼──────┐
+     │   RPA    │ │   BRA    │ │  CPA   │ │   DSA   │
+     │ (repo)   │ │(research)│ │(speed) │ │(design) │
+     └───────┬──┘ └─────┬────┘ └──┬─────┘ └──┬──────┘
+             │          │          │          │
+             └──────────┴──────────┴──────────┘
+                         │
+                    CO menerima semua
+                    temuan, resolves
+                    konflik, outputs
+                    final plan
+```
+
+## Diagram Mermaid — Alur Kerja Lengkap
+
+```mermaid
+sequenceDiagram
+    participant Owner as 👤 Product Owner
+    participant CO as 🎯 Chief Orchestrator
+    participant RPA as 📂 RPA
+    participant BRA as 🔍 BRA
+    participant CPA as ⚡ CPA
+    participant DSA as 🎨 DSA
+
+    Owner->>CO: Brief / Instruksi
+    
+    Note over CO: Fase 1 — Parallel Audit
+    par Parallel Execution
+        CO->>RPA: Task: Audit repo & flow
+        CO->>BRA: Task: Riset produk lain
+        CO->>CPA: Task: Audit performa
+        CO->>DSA: Task: Audit visual
+    end
+
+    RPA-->>CO: Temuan repo
+    BRA-->>CO: Temuan benchmark
+    CPA-->>CO: Temuan performa
+    DSA-->>CO: Temuan desain
+
+    Note over CO: Fase 2 — Cross-Reference
+    CO->>CO: Identifikasi konflik
+    CO->>CO: Resolve disagreement
+    CO->>CO: Gap analysis
+
+    Note over CO: Fase 3 — Synthesis
+    CO->>CO: Susun Master Plan
+    CO->>CO: Prioritas + Timeline
+
+    Note over CO: Fase 4 — Execution
+    CO->>RPA: Tulis refactor plan
+    CO->>BRA: Tulis UX adaptasi
+    CO->>CPA: Tulis perf checklist
+    CO->>DSA: Tulis design tokens
+
+    CO->>Owner: Master Plan + Execution Ready
+```
+
 ## Fase 1: Parallel Audit
 
 **Durasi:** Semua agent bekerja bersamaan.

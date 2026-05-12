@@ -16,6 +16,102 @@
 └──────────┘ └──────────┘ └────────────┘ └───────────┘
 ```
 
+## Diagram Cara Kerja Sama (Mermaid)
+
+```mermaid
+flowchart TD
+    Owner[/"👤 Product Owner (Brief)"/]
+    CO["🎯 CHIEF ORCHESTRATOR\n(memimpin, memutuskan, menyintesis)"]
+    RPA["📂 RPA\n(Repo & Product Auditor)"]
+    BRA["🔍 BRA\n(Benchmark & UX Research)"]
+    CPA["⚡ CPA\n(Cloudflare Performance)"]
+    DSA["🎨 DSA\n(Design System & Color)"]
+    Plan[/"📋 Master Plan & Final Output"/]
+
+    Owner -->|brief| CO
+    CO -->|task: audit repo| RPA
+    CO -->|task: riset produk lain| BRA
+    CO -->|task: audit performa| CPA
+    CO -->|task: audit visual| DSA
+
+    RPA -->|temuan repo| CO
+    BRA -->|temuan benchmark| CO
+    CPA -->|temuan performa| CO
+    DSA -->|temuan desain| CO
+
+    CO -->|resolve konflik\nputuskan tradeoff\nprioritaskan| Plan
+```
+
+## Diagram Alur Fase Kerja (Mermaid)
+
+```mermaid
+flowchart LR
+    F1["Fase 1\nParallel Audit"]
+    F2["Fase 2\nCross-Reference"]
+    F3["Fase 3\nSynthesis & Decision"]
+    F4["Fase 4\nExecution Plan"]
+
+    F1 -->|semua agent submit temuan| F2
+    F2 -->|CO resolve konflik| F3
+    F3 -->|Master Plan ready| F4
+
+    subgraph "Fase 1 (Parallel)"
+        direction TB
+        A1["RPA: audit repo"]
+        A2["BRA: riset produk"]
+        A3["CPA: audit performa"]
+        A4["DSA: audit visual"]
+    end
+
+    subgraph "Fase 2 (CO)"
+        direction TB
+        B1["Identifikasi konflik"]
+        B2["Resolve disagreement"]
+        B3["Gap analysis"]
+    end
+
+    subgraph "Fase 3 (CO)"
+        direction TB
+        C1["Prioritas High/Med/Low"]
+        C2["Timeline realistis"]
+        C3["Risk assessment"]
+    end
+
+    subgraph "Fase 4 (Semua)"
+        direction TB
+        D1["RPA: refactor plan"]
+        D2["BRA: UX adaptasi"]
+        D3["CPA: perf checklist"]
+        D4["DSA: design tokens"]
+    end
+```
+
+## Diagram Resolusi Konflik (Mermaid)
+
+```mermaid
+flowchart TD
+    Conflict["⚠️ Konflik antar Agent"]
+    CO_Check{"CO: Evaluasi"}
+    Security["🔒 Keamanan?"]
+    Speed["⚡ Kecepatan User?"]
+    Maintain["🔧 Maintainability?"]
+    Visual["🎨 Visual Polish?"]
+    Feature["✨ Fitur Baru?"]
+    Decision["✅ Keputusan Final"]
+
+    Conflict --> CO_Check
+    CO_Check --> Security
+    Security -->|Ya, prioritas 1| Decision
+    Security -->|Bukan| Speed
+    Speed -->|Ya, prioritas 2| Decision
+    Speed -->|Bukan| Maintain
+    Maintain -->|Ya, prioritas 3| Decision
+    Maintain -->|Bukan| Visual
+    Visual -->|Ya, prioritas 4| Decision
+    Visual -->|Bukan| Feature
+    Feature -->|Prioritas 5| Decision
+```
+
 ## Prinsip Arsitektur
 
 ### 1. Separation of Concerns

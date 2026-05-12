@@ -52,6 +52,28 @@ agent-wesley/
 
 ## Cara Kerja
 
+```mermaid
+flowchart TD
+    Owner[/"👤 Product Owner"/]
+    CO["🎯 CHIEF ORCHESTRATOR"]
+    RPA["📂 RPA\nRepo & Product Auditor"]
+    BRA["🔍 BRA\nBenchmark & UX Research"]
+    CPA["⚡ CPA\nCloudflare Performance"]
+    DSA["🎨 DSA\nDesign System & Color"]
+    Plan[/"📋 Master Plan"/]
+
+    Owner -->|brief| CO
+    CO -->|audit repo| RPA
+    CO -->|riset produk| BRA
+    CO -->|audit performa| CPA
+    CO -->|audit visual| DSA
+    RPA -->|temuan| CO
+    BRA -->|temuan| CO
+    CPA -->|temuan| CO
+    DSA -->|temuan| CO
+    CO -->|final plan| Plan
+```
+
 Baca [`docs/architecture.md`](docs/architecture.md) untuk arsitektur lengkap dan [`docs/operating-model.md`](docs/operating-model.md) untuk urutan kerja.
 
 ## Lisensi
